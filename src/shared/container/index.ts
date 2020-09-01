@@ -9,10 +9,6 @@ import UsuariosRepositorio from '@modules/usuarios/infra/typeorm/repositories/Us
 import CidadesRepositorio from '@modules/cidades/infra/typeorm/repositories/CidadesRepositorio';
 import EstadosRepositorio from '@modules/estados/infra/typeorm/repositories/EstadosRepositorio';
 import TokensUsuarioRepositorio from '@modules/usuarios/infra/typeorm/repositories/TokensUsuarioRepositorio';
-import { ITransportadorasRepositorio } from '@modules/transportadoras/repositories/ITransportadorasRepositorio';
-import TransportadorasRepositorio from '@modules/transportadoras/infra/typeorm/repositories/TransportadoraRepositorio';
-import { IViagensRepositorio } from '@modules/viagens/repositories/IViagensRepositorio';
-import ViagensRepositorio from '@modules/viagens/infra/typeorm/repositories/ViagensRepositorio';
 
 container.registerSingleton<IUsuariosRepositorio>(
   'UsuariosRepositorio',
@@ -29,12 +25,4 @@ container.registerSingleton<ICidadesRepositorio>(
 container.registerSingleton<ITokensUsuarioRepositorio>(
   'TokensUsuarioRepositorio',
   TokensUsuarioRepositorio,
-);
-container.registerSingleton<ITransportadorasRepositorio>(
-  'TransportadorasRepositorio',
-  TransportadorasRepositorio,
-);
-container.registerSingleton<IViagensRepositorio>(
-  'ViagensRepositorio',
-  ViagensRepositorio,
 );

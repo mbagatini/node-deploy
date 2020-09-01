@@ -10,8 +10,6 @@ import {
 } from 'typeorm';
 import Estado from '@modules/estados/infra/typeorm/entities/Estado';
 import Usuario from '@modules/usuarios/infra/typeorm/entities/Usuario';
-import Transportadora from '@modules/transportadoras/infra/typeorm/entities/Transportadora';
-import Viagem from '@modules/viagens/infra/typeorm/entities/Viagem';
 
 @Entity('cidade')
 class Cidade {
@@ -26,9 +24,6 @@ class Cidade {
 
   @OneToMany(() => Usuario, usuario => usuario.cidade)
   usuario: Usuario;
-
-  @OneToMany(() => Transportadora, transportadora => transportadora.cidade)
-  transportadora: Transportadora;
 
   @ManyToOne(() => Estado, estado => estado.cidade, { eager: true })
   @JoinColumn({ name: 'estado_id' })
