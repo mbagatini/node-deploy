@@ -1,0 +1,18 @@
+name: CI/CD Release
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  push:
+    tags:
+      - "v*" # Push events to matching v*, i.e. v1.0
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  deploy:
+    name: CD Pipeline
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run script Hello deploy!
+        run: echo Hello, I am going to deploy!
