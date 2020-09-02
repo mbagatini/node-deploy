@@ -58,6 +58,7 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           source: "."
           target: "~/app/node-deploy"
+          rm: true
           
       # Acessar o server, instalar as dependências e restartar o serviço
       - name: Restartando a aplicação
