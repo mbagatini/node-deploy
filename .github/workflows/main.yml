@@ -71,5 +71,21 @@ jobs:
           port: ${{ secrets.SSH_PORT }}          
           key: ${{ secrets.SSH_KEY }}
           source: "."
-          target: "~/app/node"
+          target: "~/app/node-deploy"
           rm: true
+          
+      # Acessar o server, instalar as dependências e restartar o serviço
+      - name: Restartando a aplicação
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          port: ${{ secrets.SSH_PORT }}          
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            cd ~/app/node-deploy
+            echo Instalando dependencias
+            yarn
+            echo Restartando o serviço
+            pm2 restart node-deploy
+        
