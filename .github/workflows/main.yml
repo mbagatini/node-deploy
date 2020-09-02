@@ -42,4 +42,4 @@ jobs:
         
       # Gera um pacote com os arquivos
       - name: workflow
-        run: ll ${{ github.workspace }}
+        run: ls ${{ github.workspace }}
