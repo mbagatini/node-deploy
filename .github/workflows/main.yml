@@ -41,48 +41,5 @@ jobs:
         run: yarn build
         
       # Gera um pacote com os arquivos
-      - uses: actions/upload-artifact@v2
-        with:
-          name: my-artifact
-          path: ${{ github.workspace }}
-     
-  deploy:
-    name: CD Pipeline
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      # Download do pacote
-      - uses: actions/download-artifact@v2
-        with:
-          name: my-artifact
-          
-      - name: Display structure of downloaded files
-        run: ls -R
-        
-      # Copiar o código após o build para a AWS
-      - name: Copiando o código após o build para a AWS
-        uses: appleboy/scp-action@master
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USER }}
-          port: ${{ secrets.SSH_PORT }}          
-          key: ${{ secrets.SSH_KEY }}
-          source: "."
-          target: "~/app/node"
-          rm: true
-          
-      # Acessar o server, instalar as dependências e restartar o serviço
-      - name: Restartando a aplicação
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USER }}
-          port: ${{ secrets.SSH_PORT }}          
-          key: ${{ secrets.SSH_KEY }}
-          script: |
-            cd ~/app/node-deploy
-            echo Instalando dependencias
-            yarn
-            echo Restartando o serviço
-            pm2 restart node-deploy
-        
+      - name: workflow
+        run: ll ${{ github.workspace }}
