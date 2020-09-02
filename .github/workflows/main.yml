@@ -39,14 +39,25 @@ jobs:
       # Executa o build
       - name: Executa o build
         run: yarn build
+        
+      # Gera um pacote com os arquivos
+      - uses: actions/upload-artifact@v2
+        with:
+          name: my-artifact
+          path: ${{ github.workspace }}
      
-#  deploy:
-#    name: CD Pipeline
-#    needs: build
-#    runs-on: ubuntu-latest
-#    steps:
-      - name: Run script Hello depl0y!
-        run: echo Hello, I am going to deploy!
+  deploy:
+    name: CD Pipeline
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      # Download do pacote
+      - uses: actions/download-artifact@v2
+        with:
+          name: my-artifact
+          
+      - name: Display structure of downloaded files
+        run: ls -R
         
       # Copiar o código após o build para a AWS
       - name: Copiando o código após o build para a AWS
