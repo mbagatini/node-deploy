@@ -42,4 +42,16 @@ jobs:
         
       # Gera um pacote com os arquivos
       - name: workflow
-        run: ls ${{ github.workspace }}
+        run: ls ${{ github.workspace }}      
+        
+      # Gera um pacote com os arquivos
+      - uses: actions/upload-artifact@v2
+        with:
+          name: my-artifact
+          path: |
+            ${{ github.workspace }}
+            !${{ github.workspace }}/node_modules
+        
+      # Gera um pacote com os arquivos
+      - name: upload-artifact
+        run: ls my-artifact
