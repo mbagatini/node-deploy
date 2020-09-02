@@ -38,11 +38,7 @@ jobs:
          
       # Executa o build
       - name: Executa o build
-        run: yarn build
-        
-      # Gera um pacote com os arquivos
-      - name: workflow
-        run: ls ${{ github.workspace }}      
+        run: yarn build    
         
       # Gera um pacote com os arquivos
       - uses: actions/upload-artifact@v2
@@ -52,6 +48,15 @@ jobs:
             ${{ github.workspace }}
             !${{ github.workspace }}/node_modules
         
-      # Gera um pacote com os arquivos
-      - name: upload-artifact
-        run: ls my-artifact
+  deploy:
+    name: CD Pipeline
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      # Download do pacote
+      - uses: actions/download-artifact@v2
+        with:
+          name: my-artifact
+          
+      - name: Display structure of downloaded files
+        run: ls -R
