@@ -41,9 +41,10 @@ jobs:
         run: yarn build    
         
       # Gera um pacote com os arquivos
-      - uses: actions/upload-artifact@v2
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
         with:
-          name: my-artifact
+          name: my-release
           path: |
             ${{ github.workspace }}
             !${{ github.workspace }}/node_modules
@@ -54,10 +55,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # Download do pacote
-      - name: Download do artifact
+      - name: Download artifact
         uses: actions/download-artifact@v2
         with:
-          name: my-artifact
+          name: my-release
           
       - name: Display structure of downloaded files
         run: ls
