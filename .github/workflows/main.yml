@@ -13,12 +13,12 @@ jobs:
   # This workflow contains a single job called "build"
   build:
     name: CI Pipeline
-    # The type of runner that the job will run on
+    # The type of runner that the job will run on DOcker
     runs-on: ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it. Get the code
       - uses: actions/checkout@v2
 
       # Runs a single command using the runners shell
