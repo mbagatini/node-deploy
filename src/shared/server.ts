@@ -3,7 +3,6 @@ import cors from 'cors';
 import 'express-async-errors';
 import 'reflect-metadata';
 import 'dotenv/config';
-// import '@shared/infra/typeorm';
 import { errors } from 'celebrate';
 import routes from './infra/http/routes';
 import AppError from './errors/AppError';
